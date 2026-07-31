@@ -1,0 +1,90 @@
+---
+title: "Lab 1 warm-up"
+format: html
+---
+
+```{python}
+# Calculate the volume of a rectangular estuary (length x width x depth)
+length = 5000   # metres
+width = 800     # metres
+depth = 3.5     # metres
+volume = length * width * depth
+print(f"Estuary volume: {volume} m^3")
+
+# Simulate 10 days of exponential population growth
+population = 100
+rate = 0.05
+history = [population]
+
+for day in range(10):
+    population = population + rate * population
+    history.append(round(population, 1))
+
+print(history)
+
+# Write a function that converts temperature from Celsius to Fahrenheit
+def celsius_to_fahrenheit(c):
+    return c * 9/5 + 32
+
+# Test it
+for temp in [0, 15, 25, 37]:
+    print(f"{temp}°C = {celsius_to_fahrenheit(temp)}°F")
+
+    import matplotlib.pyplot as plt
+
+days = list(range(len(history)))
+plt.plot(days, history, "o-")
+plt.xlabel("Day")
+plt.ylabel("Population")
+plt.title("Exponential growth")
+plt.show()
+
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+concentration = 100.0
+##clean this up
+concentration1 = concentration
+concentration2 = concentration
+concentration3 = concentration
+
+decay_rate1 = 0.05
+decay_rate2 = 0.1
+decay_rate3 = 0.01
+
+
+dt = 1.0
+history1 = [concentration1]
+history2 = [concentration2]
+history3 = [concentration3]
+
+for day in range(60):
+    concentration1 = concentration1 - decay_rate1 * concentration1 * dt
+    history1.append(concentration1)
+
+    concentration2 = concentration2 - decay_rate2 * concentration2 * dt
+    history2.append(concentration2)
+
+    concentration3 = concentration3 - decay_rate3 * concentration3 * dt
+    history3.append(concentration3)
+
+plt.plot(history1)
+plt.xlabel("Day")
+plt.ylabel("Concentration (mg/L)")
+plt.title("Tracer decay in a lake (decay = 0.05)")
+plt.show()
+
+plt.plot(history2)
+plt.xlabel("Day")
+plt.ylabel("Concentration (mg/L)")
+plt.title("Tracer decay in a lake (decay = 0.1)")
+plt.show()
+
+plt.plot(history3)
+plt.xlabel("Day")
+plt.ylabel("Concentration (mg/L)")
+plt.title("Tracer decay in a lake (decay = 0.01)")
+plt.show()
+```
