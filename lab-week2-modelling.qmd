@@ -43,15 +43,50 @@ import matplotlib.pyplot as plt
 
 ## Part A: [rename to match the lab]
 
-Write one sentence describing what this part is doing.
 
 ```{python}
-# your code here
+def decay_numerical(C0, k, dt, t_end):
+    """Return arrays of time and concentration for forward-Euler tracer decay."""
+    n = int(t_end / dt)
+    C = C0
+    ts = [0.0]
+    Cs = [C0]
+    for i in range(n):
+        C = C + (-k * C) * dt          # forward difference
+        ts.append((i + 1) * dt)
+        Cs.append(C)
+    return np.array(ts), np.array(Cs)
+
+# The exact answer, for comparison
+C0, k, t_end = 100.0, 1.0, 6.0
+t_fine = np.linspace(0, t_end, 200)
+exact = C0 * np.exp(-k * t_fine)
+
+fig, ax = plt.subplots(figsize=(7, 4))
+ax.plot(t_fine, exact, "k-", label="Exact")
+
+for dt in [0.5, 1.0, 2.0, 2.5]:
+    ts, Cs = decay_numerical(C0, k, dt, t_end)
+    ax.plot(ts, Cs, "o--", markersize=4, label=f"dt = {dt}")
+
+ax.set_xlabel("Time")
+ax.set_ylabel("Concentration C")
+ax.set_title("Tracer decay: numerical vs exact")
+ax.legend()
+plt.show()
 ```
 
 **Answer to task A1:** _(one to three sentences)_
 
+The decay rate *k* controls the gradient of the slope.
+
 **Answer to task A2:** _(one to three sentences)_
+Slight deviation from the exact value starts to be visible at dt = 2.0, becoming obvious at 5.0.
+
+**Answer to task A3:** _(one to three sentences)_
+dt = 1.0 is the largest non-negative curve - above that the points overshoot.
+**Answer to task A4:** _(one to three sentences)_
+When the step size dt is too high, the model becomes unstable. When dt exceeds 1.0, the "updating" section of the update rule (k.Cold.dt) becomes larger than Cold itself when k is also 1, causing it to overshoot into the negatives (and then way too far into the positives once Cold becomes negative and so on) resulting in oscillations.
 
 ## Part B: [rename to match the lab]
 
