@@ -1,14 +1,12 @@
 ---
-title: "Lab XX: [replace with the lab title]"
-author: "Your Name (Student ID)"
+title: "Lab 02: Modelling Environmental Systems in Python"
+author: "Gideon Bickler (470442980)"
 date: today
 format:
   html:
     toc: true
     code-fold: false
     embed-resources: true
-  pdf:
-    toc: true
 execute:
   warning: false
 ---
@@ -23,10 +21,9 @@ How to use this file:
    `lab-02-numerical.qmd`.
 2. Fill in the YAML header above (title, your name, student ID).
 3. Work through the tasks below. Delete any sections you do not need.
-4. Render to PDF:
-       quarto render lab-XX-topic.qmd --to pdf
-5. Commit and push BOTH the .qmd and the rendered .pdf.
-   Submit the link to the PDF on Canvas.
+4. Render locally with the "Render" button in VS Code, or:
+       quarto render lab-XX-topic.qmd
+5. Commit and push. Submit the link on Canvas.
 
 Tips:
 - One question, one small code cell — do not put everything in one big block.
