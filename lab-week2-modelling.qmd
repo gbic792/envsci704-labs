@@ -140,9 +140,10 @@ The steady state rises linearly with the size of Q, as can be seen in the steady
 
 **Answer to task B4:** _one sentence_
 As k increases, the steady state concentration decreases and the approach gets more gradual.
-## Reflection
 
-Write two to four sentences on what surprised you, what you got stuck on, and what you would do differently next time. This section is worth marks — do not leave it blank.
+## Reflection
+The greatest difficulty I had was remembering how both to use github - as I had previously only used it for Java, as we used a slighly different method (I believe using git bash although my memory is foggy). It was also a struggle learning how to use python for loops as they work quite differently (although more easily once I learned them) to those in other languages I have used. For part B if I had more time I would use a wider range of days and plot the sweep of k values together to make the differences more obvious.
+
 
 ## Checklist before you push
 
