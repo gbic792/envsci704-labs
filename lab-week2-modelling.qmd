@@ -96,7 +96,7 @@ import matplotlib.pyplot as plt
 
 # ---- Parameters ----
 V = 1.0e6        # lake volume (m^3)
-Q = 5.0e3        # river inflow (m^3 per day)
+Q = 10.0e3        # river inflow (m^3 per day)
 C_in = 10.0      # incoming concentration (mg/L)
 k = [0.02, 0.05, 0.1, 0.2]       # in-lake decay rate (per day)
 
@@ -136,6 +136,9 @@ The numerical model is in fact therefore reaching the analytical steady state.
 The resevoir reaches the same predicted steady state after 200 days.
 
 **Answer to task B3:** _one sentence_
+The steady state rises linearly with the size of Q, as can be seen in the steady state equation as Q*Cin increases proportionally more than Q + kV due to V being very large.
+
+**Answer to task B4:** _one sentence_
 As k increases, the steady state concentration decreases and the approach gets more gradual.
 ## Reflection
 
