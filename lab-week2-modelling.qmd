@@ -41,7 +41,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 ```
 
-## Part A: [rename to match the lab]
+## Part A: Tracer decay and step size (numerical)
 
 
 ```{python}
@@ -81,28 +81,62 @@ plt.show()
 The decay rate *k* controls the gradient of the slope.
 
 **Answer to task A2:** _(one to three sentences)_
-Slight deviation from the exact value starts to be visible at dt = 2.0, becoming obvious at 5.0.
+Deviation from the exact value starts to be visible at dt = 2.0, becoming obvious at 5.0.
 
 **Answer to task A3:** _(one to three sentences)_
 dt = 1.0 is the largest non-negative curve - above that the points overshoot.
 **Answer to task A4:** _(one to three sentences)_
 When the step size dt is too high, the model becomes unstable. When dt exceeds 1.0, the "updating" section of the update rule (k.Cold.dt) becomes larger than Cold itself when k is also 1, causing it to overshoot into the negatives (and then way too far into the positives once Cold becomes negative and so on) resulting in oscillations.
 
-## Part B: [rename to match the lab]
+## Part B: Reservoir box model (process-based)
 
 ```{python}
-# your code here
+import numpy as np
+import matplotlib.pyplot as plt
 
-fig, ax = plt.subplots(figsize=(6, 4))
-# ax.plot(...)
-ax.set_xlabel("...")
-ax.set_ylabel("...")
-ax.set_title("...")
-plt.show()
+# ---- Parameters ----
+V = 1.0e6        # lake volume (m^3)
+Q = 5.0e3        # river inflow (m^3 per day)
+C_in = 10.0      # incoming concentration (mg/L)
+k = [0.02, 0.05, 0.1, 0.2]       # in-lake decay rate (per day)
+
+# ---- Time settings ----
+dt = 1.0         # time step (days)
+days = 200
+
+# ---- Initial condition ----
+C = 20        # polluted lake (from part 2, unused in 3)
+# ---- Storage ----
+history = [C]
+results = {}
+# ---- Time loop ----
+for k_values in k:
+    C = 0                # reset initial condition for each k
+    history = [C]         # reset history for each k
+    for _ in range(days):
+        dCdt = (Q * C_in - Q * C - k_values * V * C) / V
+        C = C + dCdt * dt
+        history.append(C)
+    results[k_values] = history
+
+# ---- A quick look at the numbers ----
+for k_values, history in results.items():
+    print(f"Started at {history[0]:.2f} mg/L")
+    print(f"After 10 days: {history[10]:.2f} mg/L")
+    print(f"After 50 days: {history[50]:.2f} mg/L")
+    print(f"After {days} days: {history[-1]:.2f} mg/L")
 ```
 
 **Answer to task B1:** _(short answer)_
+Analytical Steady State: 0.91mg/L (2.d.p) (or 0.9090909...)
+State of the numerical model after 200 days: 0.91mg/L
+The numerical model is in fact therefore reaching the analytical steady state.
 
+**Answer to task B2:** _one sentence_
+The resevoir reaches the same predicted steady state after 200 days.
+
+**Answer to task B3:** _one sentence_
+As k increases, the steady state concentration decreases and the approach gets more gradual.
 ## Reflection
 
 Write two to four sentences on what surprised you, what you got stuck on, and what you would do differently next time. This section is worth marks — do not leave it blank.
