@@ -43,6 +43,27 @@ The percent jumps from "small" at 55% density to "large" at 58% density - meanin
 
 Variability is lower near the lowest and highest densities - at low densities, the chance of a tree existing in one of the 4 neighbouring spots is always low, almost always causing the fire to fizzle out - at high densities, the chance of there being any isolated trees at all, conversley, is low. At the threshold, the trees near the starting locations of the fire will randomly either have really strong pathways or very weak ones which are purely dependent on the random setup of the forest, while low and high density will have almost none or total pathways respectively.
 
+## Part C: Summary ODD documentation
+
+Replace each `<...>` placeholder with your own text about the fire model. Keep the **bold** phrases as they are and keep ODD's key words in *italics*. Aim for one short paragraph per element. 
+
+**The overall *purpose* of our model is** \<what question does the model address? 1 to 2 sentences.\> **Specifically, we are addressing the following questions:** \<e.g. how does the burned area respond to tree density?\> **To consider our model realistic enough for its purpose, we use the following *patterns*:** \<what real-world patterns should the model reproduce, e.g. a sharp threshold in fire spread?\>
+
+**The model includes the following *entities*:** \<list them, e.g. patches representing trees.\> **The *state variables* characterising these entities are listed in Table 1.** **The *spatial* and *temporal* resolution and extent are** \<world size in patches, what one patch and one tick represent, and when a run ends.\>
+
+**The most important *processes* of the model, which are repeated every *time step*, are** \<what happens each tick, in order — use the same names as in your code, e.g. ignition of neighbours, burnout.\>
+
+**The most important *design concepts* of the model are** \<e.g. emergence: the critical density threshold emerges from purely local spread rules; stochasticity: random tree placement.\>
+
+**The model is initialized with** \<initial conditions: how trees are placed, where the fire starts, and the slider settings used.\>
+
+**Table 1.** Entities and state variables of the model.
+
+| Entity | Variable | Description | Possible values | Units |
+|--------|----------|-------------|-----------------|-------|
+| Patch  | `pcolor` |             |                 |       |
+| Global | `density`|             |                 |       |
+| ...    |          |             |                 |       |
 
 
 
