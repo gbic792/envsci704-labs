@@ -45,7 +45,6 @@ plt.show()
 import matplotlib.pyplot as plt
 
 concentration = 100.0
-##clean this up
 concentration1 = concentration
 concentration2 = concentration
 concentration3 = concentration
