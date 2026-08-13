@@ -10,13 +10,49 @@ format:
 execute:
   warning: false
 ---
+## Part A 
 
+**Part A1:**
 ```netlogo
+globals [
+  initial-trees
+  burned-trees
+]
 
+to setup
+  clear-all
+  ask patches [
+    if random 100 < density [ set pcolor green ]
+  ]
+  ask patches with [ pxcor = min-pxcor ] [
+    if pcolor = green [ set pcolor red ]
+  ]
+  set initial-trees count patches with [ pcolor = green or pcolor = red ]
+  set burned-trees 0
+  reset-ticks
+end
+
+to go
+  if not any? patches with [ pcolor = red ] [ stop ]
+  ask patches with [ pcolor = red ] [
+    ask neighbors4 with [ pcolor = green ] [
+      set pcolor red
+    ]
+    set pcolor grey
+    set burned-trees burned-trees + 1
+  ]
+  tick
+end
 ```
+**Part A2:**
+
 ![Fire Spread Logo with 60% Density](PartAScreenshot.png)
 
-**Percent Burned at end of run:** 90.3%
+**Part A3:**
+
+Percent Burned at end of run: 90.3%
+
+## Part B 
 
 **Part B1: Markdown Table of Results:**
 | Density | Run 1  | Run 2 | Run 3  | Run 4 | Run 5  | Run 6  | Run 7 | Run 8 | Run 9  | Run 10 | Average |
