@@ -46,7 +46,7 @@ end
 ```
 **Part A2:**
 
-![Fire Spread Logo with 60% Density](PartAScreenshot.png)
+![Fire Spread NetLogo model with 60% Density](PartAScreenshot.png)
 
 **Part A3:**
 
@@ -55,6 +55,7 @@ Percent Burned at end of run: 90.3%
 ## Part B 
 
 **Part B1: Markdown Table of Results:**
+
 | Density | Run 1  | Run 2 | Run 3  | Run 4 | Run 5  | Run 6  | Run 7 | Run 8 | Run 9  | Run 10 | Average |
 | ------- | ------ | ----- | ------ | ----- | ------ | ------ | ----- | ----- | ------ | ------ | ------- |
 | 40      | 8.4%   | 10.4% | 7.2%   | 12.8% | 7.5%   | 16.0%  | 17.3% | 19.4% | 16.0%  | 8.8%   | 12.4%   |
@@ -69,6 +70,7 @@ Percent Burned at end of run: 90.3%
 | 80      | 100.0% | 99.8% | 100.0% | 99.8% | 100.0% | 100.0% | 99.9% | 99.9% | 100.0% | 99.5%  | 99.9%   |
 
 **Part B2: Plot of mean burned vs density**
+
 ![Plot of Trees Burned compared with the density of the forest.](ForestBurnPerDenistyPlot.png)
 
 **Part B3: Critical Density** 
@@ -85,21 +87,22 @@ Replace each `<...>` placeholder with your own text about the fire model. Keep t
 
 **The overall *purpose* of our model is** to illustrate the relationship between forest density and the ability of fire to spread and destroy a given forest. **Specifically, we are addressing the following questions:** How does the density of trees in a forest affect the ability of a forest fire to spread, and what is the threshold density for which the destruction will increase the most? **To consider our model realistic enough for its purpose, we use the following *patterns*:** having a distinct density threshold at around 59% that shows a sudden jump in the forest percentage destroyed once you've passed it which will show up for each random forest layout.
 
-**The model includes the following *entities*:** Patches that represent two entities: initial-trees and burned-trees. **The *state variables* characterising these entities are listed in Table 1.** **The *spatial* and *temporal* resolution and extent are** 33 patches by 33 patches (for a total of 1089 patches), where each patch represents the area of one large tree canopy, and where each tick represents one minute of time. The run ends when there are no more "red" (on fire) initial-trees,meaning the forest fire has burnt out.
+**The model includes the following *entities*:** Patches that represent two global entities with pcolor: initial-trees and burned-trees. **The *state variables* characterising these entities are listed in Table 1.** **The *spatial* and *temporal* resolution and extent are** 33 patches by 33 patches (for a total of 1089 patches), where each patch represents the area of one large tree canopy, and where each tick represents one minute of time. The run ends when there are no more "red" (on fire) initial-trees,meaning the forest fire has burnt out.
 
 **The most important *processes* of the model, which are repeated every *time step*, are** first, at the start of the loop, the model checks if the fire has burnt out (i.e. whether there are no red, on fire initial-trees anymore), and if so it stops - then, if the simulation doesn't stop, it checks whether any green (healthy) trees are in the four cardinal directions of an 'on fire' tree - if so, those trees are themselves set on fire. Finally, the initial-tree patch that was originally on fire is then converted to a burnt-tree patch and turned grey, and adds 1 to the burnt tree count.
 
-**The most important *design concepts* of the model are** the emergence of a critial density threshold of trees resulting in a sudden jump in forest destruction, the randomness/stochasticity of the tree placement - making the model repeatable in order to gain a more accurate insight and finally the source of the fire coming from a "fire front" rather than a single ignition point (therefore representing a patch of forest in a larger forest fire rather being the start of its own).
+**The most important *design concepts* of the model are** the emergence of a critial density threshold of trees resulting in a sudden jump in forest destruction only from spread by individual trees, the randomness/stochasticity of the tree placement - making the model repeatable in order to gain a more accurate insight - and finally, the source of the fire coming from a "fire front" rather than a single ignition point (therefore representing a patch of forest in a larger forest fire rather being the start of its own).
 
-**The model is initialized with** a random set of green initial-trees generated based on the input density - where the initial-trees at the far left column are set to red, on fire trees, 'igniting' the forest fire. The initial trees value is set to count the number of these green or red patches, and burned-trees is initialised as 0 (as none should start out in the simulation).
+**The model is initialized with** a random set of green initial-trees generated based on the input density - where the initial-trees at the far left column are set to red, on fire trees, 'igniting' the forest fire. The initial trees value is set to count the number of these green or red patches, and burned-trees is initialised as 0 (as none should start out in the simulation). The slider starts at 60%, with an increment of 1%.
 
 **Table 1.** Entities and state variables of the model.
 
 | Entity | Variable | Description | Possible values | Units |
 |--------|----------|-------------|-----------------|-------|
-| Patch  | `pcolor` |             |                 |       |
-| Global | `density`|             |                 |       |
-| ...    |          |             |                 |       |
+| Patch  | `pcolor` | The colour of each patch, representing initial trees/on fire trees and burnt trees   |  green, red and grey  | none  |
+| Global | `density`| the percentage of patches that start as initial trees (green and red) | 0-100 |  % |
+| Global | `inital-tree` |green or red tree representing a living tree in the forest|0-1089 | patches |
+| Global | `burned-tree` |grey, dead tree that has been burned|0-1089 | patches |
 
 
 
