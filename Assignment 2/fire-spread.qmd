@@ -1,7 +1,7 @@
 ---
 title: "Lab 04: NetLogo application: fire-spread lab"
 author: "Gideon Bickler (470442980)"
-date: today
+date: 14/08/2026
 format:
   html:
     toc: true
@@ -83,15 +83,15 @@ Variability is lower near the lowest and highest densities - at low densities, t
 
 Replace each `<...>` placeholder with your own text about the fire model. Keep the **bold** phrases as they are and keep ODD's key words in *italics*. Aim for one short paragraph per element. 
 
-**The overall *purpose* of our model is** \<what question does the model address? 1 to 2 sentences.\> **Specifically, we are addressing the following questions:** \<e.g. how does the burned area respond to tree density?\> **To consider our model realistic enough for its purpose, we use the following *patterns*:** \<what real-world patterns should the model reproduce, e.g. a sharp threshold in fire spread?\>
+**The overall *purpose* of our model is** to illustrate the relationship between forest density and the ability of fire to spread and destroy a given forest. **Specifically, we are addressing the following questions:** How does the density of trees in a forest affect the ability of a forest fire to spread, and what is the threshold density for which the destruction will increase the most? **To consider our model realistic enough for its purpose, we use the following *patterns*:** having a distinct density threshold at around 59% that shows a sudden jump in the forest percentage destroyed once you've passed it which will show up for each random forest layout.
 
-**The model includes the following *entities*:** \<list them, e.g. patches representing trees.\> **The *state variables* characterising these entities are listed in Table 1.** **The *spatial* and *temporal* resolution and extent are** \<world size in patches, what one patch and one tick represent, and when a run ends.\>
+**The model includes the following *entities*:** Patches that represent two entities: initial-trees and burned-trees. **The *state variables* characterising these entities are listed in Table 1.** **The *spatial* and *temporal* resolution and extent are** 33 patches by 33 patches (for a total of 1089 patches), where each patch represents the area of one large tree canopy, and where each tick represents one minute of time. The run ends when there are no more "red" (on fire) initial-trees,meaning the forest fire has burnt out.
 
-**The most important *processes* of the model, which are repeated every *time step*, are** \<what happens each tick, in order — use the same names as in your code, e.g. ignition of neighbours, burnout.\>
+**The most important *processes* of the model, which are repeated every *time step*, are** first, at the start of the loop, the model checks if the fire has burnt out (i.e. whether there are no red, on fire initial-trees anymore), and if so it stops - then, if the simulation doesn't stop, it checks whether any green (healthy) trees are in the four cardinal directions of an 'on fire' tree - if so, those trees are themselves set on fire. Finally, the initial-tree patch that was originally on fire is then converted to a burnt-tree patch and turned grey, and adds 1 to the burnt tree count.
 
-**The most important *design concepts* of the model are** \<e.g. emergence: the critical density threshold emerges from purely local spread rules; stochasticity: random tree placement.\>
+**The most important *design concepts* of the model are** the emergence of a critial density threshold of trees resulting in a sudden jump in forest destruction, the randomness/stochasticity of the tree placement - making the model repeatable in order to gain a more accurate insight and finally the source of the fire coming from a "fire front" rather than a single ignition point (therefore representing a patch of forest in a larger forest fire rather being the start of its own).
 
-**The model is initialized with** \<initial conditions: how trees are placed, where the fire starts, and the slider settings used.\>
+**The model is initialized with** a random set of green initial-trees generated based on the input density - where the initial-trees at the far left column are set to red, on fire trees, 'igniting' the forest fire. The initial trees value is set to count the number of these green or red patches, and burned-trees is initialised as 0 (as none should start out in the simulation).
 
 **Table 1.** Entities and state variables of the model.
 
